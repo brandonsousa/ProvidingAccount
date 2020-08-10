@@ -1,0 +1,32 @@
+@layout('main')
+@section('root')
+<h1 class="m-0 text-dark">Receipts</h1>
+@endsection
+@section('child')
+<li class="breadcrumb-item"><a href="/receipts">my</a></li>
+@endsection
+@section('sroot')
+<li class="breadcrumb-item active">Receipts</li>
+@endsection
+@section('content')
+<div class="card card-primary">
+    <div class="card-header">
+      <div class="card-title">
+        My receipts {{receipts.length}}
+      </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            @each(item in receipts)
+                <div class="col-sm-2">
+                    <a href="{{item.img_url}}" data-toggle="lightbox" data-title="{{item.name}}, {{item.price}}, {{item.category}}" data-gallery="gallery">
+                        <img src="{{item.img_url}}" class="img-fluid mb-2" alt="white sample"/>
+                    </a>
+                </div>
+            @else
+                <p>Nothing to show</p>
+            @endeach
+        </div>
+    </div>
+</div>
+@endsection

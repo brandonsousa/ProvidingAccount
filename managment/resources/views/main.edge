@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{assetsUrl('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{assetsUrl('dist/css/adminlte.min.css')}}">
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="{{assetsUrl('../plugins/ekko-lightbox/ekko-lightbox.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -125,7 +127,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="/receipts/{{auth.user.id}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All my</p>
                 </a>
@@ -203,6 +205,8 @@
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 <script src="{{assetsUrl('plugins/jquery/jquery.js')}}"></script>
+<!-- jQuery UI -->
+<script src="{{assetsUrl('../plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap -->
 <script src="{{assetsUrl('plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
 <!-- overlayScrollbars -->
@@ -224,5 +228,26 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="{{assetsUrl('dist/js/pages/dashboard2.js')}}"></script>
+
+<!-- Ekko Lightbox -->
+<script src="{{assetsUrl('../plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
+<!-- Filterizr-->
+<script src="{{assetsUrl('../plugins/filterizr/jquery.filterizr.min.js')}}"></script>
+<script>
+    $(function () {
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox({
+          alwaysShowClose: true
+        });
+      });
+  
+      $('.filter-container').filterizr({gutterPixels: 3});
+      $('.btn[data-filter]').on('click', function() {
+        $('.btn[data-filter]').removeClass('active');
+        $(this).addClass('active');
+      });
+    })
+  </script>
 </body>
 </html>
