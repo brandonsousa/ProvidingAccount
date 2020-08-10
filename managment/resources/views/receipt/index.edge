@@ -20,7 +20,8 @@
                 <div class="row">
                     @each(item in user.receipts)
                         <div class="col-sm-2">
-                            <a href="{{item.img_url}}" data-toggle="lightbox" data-title="{{item.name}}, {{item.price}}, {{item.category}}" data-gallery="gallery">
+                            <a href="{{item.img_url}}" data-toggle="lightbox" data-title="{{item.name}}, {{item.price}}, {{item.category}}" 
+                            data-gallery="gallery">
                                 <img src="{{item.img_url}}" class="img-fluid mb-2" alt="white sample"/>
                             </a>
                         </div>

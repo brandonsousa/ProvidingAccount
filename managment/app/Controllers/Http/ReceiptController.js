@@ -4,6 +4,8 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const Database = use('Database')
+
 const Receipt = use('App/Models/Receipt')
 class ReceiptController {
   /**
@@ -16,9 +18,9 @@ class ReceiptController {
    * @param {View} ctx.view
    */
   async index({ view }) {
-    const allReceipts = await Receipt.query().with('receipts').fetch()
+
     return view.render('receipt.index', {
-      all: allReceipts.toJSON()
+      all: null
     })
   }
 
@@ -33,9 +35,9 @@ class ReceiptController {
    */
   async show({ params, response, view, auth }) {
     if (auth.user.id == params.id) {
-      const receipts = await Receipt.findBy('user_id', auth.user.id)
+      const receipts = await Receipt.query().where({user_id: auth.user.id}).fetch()
       return view.render('receipt.my', {
-        'receipts': receipts
+        receipts: receipts.toJSON()
       })
     }
     return response.redirect('/receipts')
