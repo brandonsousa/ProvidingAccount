@@ -1,9 +1,9 @@
 'use strict'
 const User = use('App/Models/User')
 class AuthController {
-    async index({ view, auth }) {
+    async index({ view, auth , response}) {
         if (auth.user != null) {
-            console.log('logado')
+            return response.redirect('/dashboard')
         }
         return view.render('auth.login')
     }
