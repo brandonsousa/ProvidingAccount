@@ -1,0 +1,56 @@
+@layout('main')
+@section('root')
+<h1 class="m-0 text-dark">User</h1>
+@endsection
+@section('child')
+<li class="breadcrumb-item"><a href="/user">create</a></li>
+@endsection
+@section('sroot')
+<li class="breadcrumb-item active">user</li>
+@endsection
+@section('content')
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Create new user</h3>
+    @if(flashMessage('success'))
+      <div class="alert alert-success" role="alert">
+          {{flashMessage('success')}}
+      </div>
+    @endif
+    @if(flashMessage('error'))
+        <div class="alert alert-danger" role="alert">
+            {{flashMessage('error')}}
+        </div>
+    @endif
+  </div>
+  <form role="form" id="quickForm" action="/user" method="POST">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" name="username" maxlength="80" class="form-control" id="usernameInput" placeholder="Enter username" required>
+      </div>
+      <div class="form-group">
+        <label for="codeInput">Code <small>registration</small></label>
+        <input type="number" name="code" class="form-control" id="codeInput" placeholder="Enter registration code" required>
+      </div>
+      <div class="form-group">
+        <label for="emailInput">Email <small>company mail</small></label>
+        <input type="email" name="email" class="form-control" id="emailInput" placeholder="Enter email" required>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password" required>
+      </div>
+      <div class="form-group mb-0">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" name="admin" class="custom-control-input" id="adminCheck">
+          <label class="custom-control-label" for="adminCheck">This user is admin</label>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Store new user</button>
+    </div>
+  </form>
+</div>
+@endsection

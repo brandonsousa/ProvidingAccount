@@ -10,6 +10,7 @@ class ReceiptsSchema extends Schema {
       table.string('name',15).notNullable()
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
       table.date('date').notNullable()
+      table.string('key', 10).notNullable().unique()
       table.string('price', 10).notNullable()
       table.string('img_url', 255).notNullable()
       table.string('category', 20).notNullable()

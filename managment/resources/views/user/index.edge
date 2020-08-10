@@ -1,0 +1,36 @@
+@layout('main')
+@section('root')
+<h1 class="m-0 text-dark">User <small>{{users.length}}</small></h1>
+@endsection
+@section('child')
+<li class="breadcrumb-item"><a href="/dashboard">all</a></li>
+@endsection
+@section('sroot')
+<li class="breadcrumb-item active">User</li>
+@endsection
+@section('content')
+<table class="table table-bordered">
+  <thead>                  
+    <tr>
+      <th style="width: 10px">#</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th style="width: 40px">Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      @each(user in users)
+        <td>{{user.code}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        @if(user.admin == 1)
+          <td><span class="badge bg-warning">admin</span></td>
+        @else
+          <td><span class="badge bg-success">common</span></td>
+        @endif
+      @endeach
+    </tr>
+  </tbody>
+</table>
+@endsection

@@ -41,6 +41,7 @@ class ReceiptController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
+    const key = Math.random().toString(36).slice(-10);
   }
 
   /**
