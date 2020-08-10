@@ -1,0 +1,110 @@
+@layout('main')
+@section('root')
+<h1 class="m-0 text-dark">Profile</h1>
+@endsection
+@section('child')
+<li class="breadcrumb-item"><a href="/dashboard">me</a></li>
+@endsection
+@section('sroot')
+<li class="breadcrumb-item active">Profile</li>
+@endsection
+@section('content')
+<div class="row">
+    <div class="col-md-3">
+      <!-- Profile Image -->
+      <div class="card card-primary card-outline">
+        <div class="card-body box-profile">
+          <div class="text-center">
+            <img class="profile-user-img img-fluid img-circle"
+                 src="{{assetsUrl('dist/img/AdminLTELogo.png')}}"
+                 alt="User profile picture">
+          </div>
+
+          <h3 class="profile-username text-center">{{auth.user.username}}</h3>
+
+          <p class="text-muted text-center">Software Engineer</p>
+
+          <ul class="list-group list-group-unbordered mb-3">
+            <li class="list-group-item">
+              <b>Created at</b> <a class="float-right">{{auth.user.created_at}}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Updated at</b> <a class="float-right">{{auth.user.updated_at}}</a>
+            </li>
+          </ul>
+
+          <a href="/logout" class="btn btn-primary btn-block"><b>Logout</b></a>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-header p-2">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
+            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+          </ul>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+          <div class="tab-content">
+            <div class="active tab-pane" id="activity">
+              <!-- Post -->
+              @each(item in receipts)
+                <hr>
+                <div class="post clear-fix">
+                    <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="{{item.img_url}}" alt="User Image">
+                    <span class="username">
+                        <a href="#">{{item.name}}</a>
+                    </span>
+                    <span class="description">{{item.created_at}}</span>
+                    <p>{{item.description}}</p>
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="col-sm-6">
+                        <img class="img-fluid" src="{{item.img_url}}" alt="Photo">
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <hr>  
+            @else 
+                <p>Nothing to show</p>
+              @endeach
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="settings">
+              <form class="form-horizontal" action="{{ '/profile/' + auth.user.id + '?_method=PUT' }}" method="POST">
+                <div class="form-group">
+                    <label for="usernameInput">Username</label>
+                    <input type="text" name="username" maxlength="80" class="form-control" id="usernameInput" placeholder="Enter username" value="{{auth.user.username}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="codeInput">Code <small>registration</small></label>
+                    <input type="number" name="code" class="form-control" id="codeInput" placeholder="Enter registration code" value="{{auth.user.code}}" disabled required>
+                  </div>
+                  <div class="form-group">
+                    <label for="emailInput">Email <small>company mail</small></label>
+                    <input type="email" name="email" class="form-control" id="emailInput" placeholder="Enter email" value="{{auth.user.email}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="passwordInput">Password <small>leave it blank if you don't want to update</small></label>
+                    <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
+                  </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-warning">Update my profile</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.tab-pane -->
+          </div>
+          <!-- /.tab-content -->
+        </div><!-- /.card-body -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+@endsection
