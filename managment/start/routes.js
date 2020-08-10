@@ -18,6 +18,7 @@ const Route = use('Route')
 
 Route.get('/', 'AuthController.index')
 Route.post('/login', 'AuthController.login')
+Route.get('/logout', 'AuthController.logout')
 
 Route.resource('/dashboard', 'DashboardController').middleware('auth')
 Route.resource('/user', 'UserController').middleware('auth')

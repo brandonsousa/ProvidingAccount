@@ -1,15 +1,11 @@
 'use strict'
 
-const Receipt = use('App/Models/Receipt')
 const User = use('App/Models/User')
 
 class ProfileController {
 
     async index({ view, auth }) {
-        const receipts = await Receipt.findBy('user_id', auth.user.id)
-        return view.render('profile.index', {
-            receipts: receipts
-        })
+        return view.render('profile.index')
     }
 
     async update({ request, response, auth }) {

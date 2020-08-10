@@ -44,38 +44,12 @@
       <div class="card">
         <div class="card-header p-2">
           <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
             <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
           </ul>
         </div><!-- /.card-header -->
         <div class="card-body">
-          <div class="tab-content">
-            <div class="active tab-pane" id="activity">
-              <!-- Post -->
-              @each(item in receipts)
-                <hr>
-                <div class="post clear-fix">
-                    <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="{{item.img_url}}" alt="User Image">
-                    <span class="username">
-                        <a href="#">{{item.name}}</a>
-                    </span>
-                    <span class="description">{{item.created_at}}</span>
-                    <p>{{item.description}}</p>
-                    </div>
-                    <!-- /.user-block -->
-                    <div class="col-sm-6">
-                        <img class="img-fluid" src="{{item.img_url}}" alt="Photo">
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <hr>  
-            @else 
-                <p>Nothing to show</p>
-              @endeach
-            </div>
             <!-- /.tab-pane -->
-            <div class="tab-pane" id="settings">
+            <div class="active tab-pane" id="settings">
               <form class="form-horizontal" action="{{ '/profile/' + auth.user.id + '?_method=PUT' }}" method="POST">
                 <div class="form-group">
                     <label for="usernameInput">Username</label>

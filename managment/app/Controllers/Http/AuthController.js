@@ -17,6 +17,11 @@ class AuthController {
         session.flash({ error: 'Invalid Login, try again' })
         response.redirect('/')
     }
+
+    async logout({ response, auth }) { 
+        await auth.logout()
+        return response.redirect('/')
+    }
 }
 
 module.exports = AuthController
