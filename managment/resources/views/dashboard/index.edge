@@ -9,5 +9,80 @@
 <li class="breadcrumb-item active">Dashboard</li>
 @endsection
 @section('content')
-  <p>carai</p>
+  <!-- Info boxes -->
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-utensils"></i></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Food</span>
+          @if(food[0].total == null)
+            <span class="info-box-number">R$ 0<small>,00</small></span>
+          @else
+            <span class="info-box-number">R$ {{food[0].total}}<small>,00</small></span>
+          @endif
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hotel"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Accommodation</span>
+          @if(accommodation[0].total == null)
+            <span class="info-box-number">R$ 0<small>,00</small></span>
+          @else
+            <span class="info-box-number">R$ {{accommodation[0].total}}<small>,00</small></span>
+          @endif
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- fix for small devices only -->
+    <div class="clearfix hidden-md-up"></div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shuttle-van"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Transport</span>
+          @if(transport[0].total == null)
+            <span class="info-box-number">R$ 0<small>,00</small></span>
+          @else
+            <span class="info-box-number">R$ {{transport[0].total}}<small>,00</small></span>
+          @endif
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-warning elevation-1"><i class="fab fa-opencart"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Others</span>
+          @if(others[0].total == null)
+            <span class="info-box-number">R$ 0<small>,00</small></span>
+          @else
+            <span class="info-box-number">R$ {{others[0].total}}<small>,00</small></span>
+          @endif
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
 @endsection
