@@ -19,9 +19,7 @@ class ReceiptController {
   async index({ response, auth }) {
     const receipts = await Receipt.findBy('user_id', auth.user.id)
     if (receipts) {
-      return response.status(200).send({
-        receipts: receipts.toJSON()
-      })
+      return response.status(200).send(receipts)
     }
     return response.status(400).send(null)
   }
