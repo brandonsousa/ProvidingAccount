@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="{{assetsUrl('plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{assetsUrl('plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <title>Catita | Report</title>
+</head>
+<style>
+    
+</style>
+<body>
+
+    <div class="contatiner">
+        @each(item in user.receipts)
+        <div class="receipts">
+            <img id="receipt" src="{{item.img_url}}" alt="{{item.name}}" srcset="">
+        </div>
+        @endeach
+    </div>
+
+    <!--script>
+        var docDefinition = {
+            content: [
+                {
+                    text: '', style: 'header'
+                },
+                'Matricula ',
+
+            ],
+            footer: {
+                columns: [
+                    {
+                        text: 'Generate by catita web', style: 'footer'
+                    },
+                ]
+            },
+
+            styles: {
+                header: {
+                    fontSize: 22,
+                    bold: true
+                },
+                footer:{
+                    fontSize: 10,
+                    bold: true,
+                    alignment: 'left',
+                    margin: [9, 0, 0, 10]
+                }
+            },
+            // a string or { width: number, height: number }
+            pageSize: 'A4',
+
+            // by default we use portrait, you can change it to landscape if you wish
+            pageOrientation: 'portrait',
+
+            // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+            pageMargins: [40, 60, 40, 30],
+        };
+        // open the PDF in a new window
+        pdfMake.createPdf(docDefinition).open();
+
+        // print the PDF
+        //pdfMake.createPdf(docDefinition).print();
+
+        // download the PDF
+        //pdfMake.createPdf(docDefinition).download('optionalName.pdf');
+    </script-->
+</body>
+
+</html>

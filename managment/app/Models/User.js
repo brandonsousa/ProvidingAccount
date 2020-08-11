@@ -7,7 +7,12 @@ const Hash = use('Hash')
 const Model = use('Model')
 
 class User extends Model {
-  static boot () {
+
+  static get hidden() {
+    return ['password', 'id', 'admin', 'created_at', 'updated_at', 'user_id']
+  }
+
+  static boot() {
     super.boot()
 
     /**
@@ -31,11 +36,11 @@ class User extends Model {
    *
    * @return {Object}
    */
-  tokens () {
+  tokens() {
     return this.hasMany('App/Models/Token')
   }
 
-  receipts () {
+  receipts() {
     return this.hasMany('App/Models/Receipt')
   }
 }
