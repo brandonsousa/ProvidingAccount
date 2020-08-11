@@ -1,7 +1,5 @@
 package br.com.seasyc.providingaccount.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.Date;
 
 public class Receipt {

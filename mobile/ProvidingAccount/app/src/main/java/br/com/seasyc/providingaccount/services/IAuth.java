@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import br.com.seasyc.providingaccount.models.User;
 import br.com.seasyc.providingaccount.models.auth.Login;
+import br.com.seasyc.providingaccount.models.auth.Logout;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -15,5 +16,5 @@ public interface IAuth {
     Call<Login> login(@Body User user);
 
     @GET("/")
-    Call<Login> logout(@HeaderMap HashMap<String, String> auth);
+    Call<Logout> logout(@HeaderMap HashMap<String, String> auth);
 }

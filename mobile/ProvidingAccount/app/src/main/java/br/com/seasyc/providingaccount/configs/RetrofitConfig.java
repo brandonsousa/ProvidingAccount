@@ -17,15 +17,15 @@ public class RetrofitConfig {
                 .build();
     }
 
-    public IAuth auth(){
+    public IAuth auth() {
         return this.retrofit.create(IAuth.class);
     }
 
-    public IUser user(){
+    public IUser user() {
         return this.retrofit.create(IUser.class);
     }
 
-    public IReceipt receipt(){
+    public IReceipt receipt() {
         return this.retrofit.create(IReceipt.class);
     }
 }

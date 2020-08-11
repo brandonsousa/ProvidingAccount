@@ -1,8 +1,8 @@
 package br.com.seasyc.providingaccount.views.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.seasyc.providingaccount.R;
 
