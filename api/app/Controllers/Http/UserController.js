@@ -7,7 +7,7 @@ class UserController {
         if (user) {
             return response.status(200).send(user)
         }
-        return response.status(404).send('error, user not found')
+        return response.status(404).send(null)
     }
 }
 

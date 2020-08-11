@@ -4,9 +4,8 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-/**
- * Resourceful controller for interacting with receipts
- */
+const Receipt = use('App/Models/Receipt')
+const Database = use('Database')
 class ReceiptController {
   /**
    * Show a list of all receipts.
@@ -17,19 +16,14 @@ class ReceiptController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-  }
-
-  /**
-   * Render a form to be used for creating a new receipt.
-   * GET receipts/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async index({ response, auth }) {
+    const receipts = await Receipt.findBy('user_id', auth.user.id)
+    if (receipts) {
+      return response.status(200).send({
+        receipts: receipts.toJSON()
+      })
+    }
+    return response.status(400).send(null)
   }
 
   /**
@@ -40,7 +34,19 @@ class ReceiptController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store({ request, response, auth }) {
+    const data = request.except(['key'])
+
+    const receipt = await Receipt.create({
+      'user_id': auth.user.id,
+      'key': Math.random().toString(36).slice(-10),
+      ...data
+    })
+
+    if (receipt) {
+      return response.status(201).send(receipt)
+    }
+    return response.status(400).send(null)
   }
 
   /**
@@ -52,30 +58,18 @@ class ReceiptController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-  }
+  async show({ params, response, auth }) {
+    const receipt = await Database.raw(
+      'SELECT * FROM recipts WHERE id = ? AND user_id = ?',
+      [params.id, auth.user.id]
+    )
+    if (receipt[0].length == 0) {
+      return response.status(200).send({
+        receipt: receipt[0]
+      })
+    }
 
-  /**
-   * Render a form to update an existing receipt.
-   * GET receipts/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update receipt details.
-   * PUT or PATCH receipts/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
+    return response.status(400).send(null)
   }
 
   /**
@@ -86,7 +80,8 @@ class ReceiptController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy({ params, request, response, auth }) {
+
   }
 }
 
