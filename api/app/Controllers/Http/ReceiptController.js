@@ -33,11 +33,10 @@ class ReceiptController {
    * @param {Response} ctx.response
    */
   async store({ request, response, auth }) {
-    const data = request.except(['key'])
+    const data = request.all()
 
     const receipt = await Receipt.create({
       'user_id': auth.user.id,
-      'key': Math.random().toString(36).slice(-10),
       ...data
     })
 
