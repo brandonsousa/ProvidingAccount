@@ -58,16 +58,10 @@ class ReceiptController {
    */
   async show({ params, response, auth }) {
     const receipt = await Database.raw(
-      'SELECT * FROM recipts WHERE id = ? AND user_id = ?',
+      'SELECT * FROM receipts WHERE id = ? AND user_id = ?',
       [params.id, auth.user.id]
     )
-    if (receipt[0].length == 0) {
-      return response.status(200).send({
-        receipt: receipt[0]
-      })
-    }
-
-    return response.status(400).send(null)
+    return response.status(200).send(receipt[0])
   }
 
   /**
