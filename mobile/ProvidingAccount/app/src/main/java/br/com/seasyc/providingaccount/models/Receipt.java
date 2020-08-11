@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
 
-@JsonIgnoreProperties({"created_at", "updated_at", "user_id"})
 public class Receipt {
 
     private int id;
