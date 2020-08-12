@@ -38,4 +38,10 @@
     <string name="cv_receipt_iv">Image</string>
     <string name="cv_receipt">Card receipt</string>
 
+    <!-- FRAGMENTE ME -->
+    <string name="frg_me_name">My name</string>
+    <string name="frg_me_email">Email</string>
+    <string name="frg_me_code">Code</string>
+    <string name="frg_me_logout">Log Out</string>
+
 </resources>
