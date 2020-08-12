@@ -10,12 +10,27 @@
     <title>Catita | Report</title>
 </head>
 <style>
-    
+    *{ margin: 0; padding: 0; }
+
+    .container {     display: flex;     flex-direction: column;     align-items: center; }
+
+    .receipts { margin-bottom: 10px}
+
+    img{ height: 50vh; }
+</style>
+<style type="text/css" media="print">
+    #print { display: none }
 </style>
 <body>
-
-    <div class="contatiner">
+    <input type="button" id="print" name="print" value="print" onclick="window.print();">
+    <div class="container">
         @each(item in user.receipts)
+        <div class="receipts">
+            <img id="receipt" src="{{item.img_url}}" alt="{{item.name}}" srcset="">
+        </div>
+        <div class="receipts">
+            <img id="receipt" src="{{item.img_url}}" alt="{{item.name}}" srcset="">
+        </div>
         <div class="receipts">
             <img id="receipt" src="{{item.img_url}}" alt="{{item.name}}" srcset="">
         </div>
