@@ -4,17 +4,18 @@ class AuthController {
     async login({ request, response, auth }) {
         const { code, password } = request.all()
         const token = await auth.attempt(code, password)
-
         if (token) {
             return response.status(200).send({
                 login: true,
-                token: token.token
+                token: token.token,
+                code: code
             })
         }
 
         return response.status(401).send({
             login: false,
-            token: 'Invalid credentials, try again'
+            token: 'Invalid credentials, try again',
+            code: null
         })
     }
 
