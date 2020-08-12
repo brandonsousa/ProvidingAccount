@@ -27,4 +27,15 @@
     <string name="frg_new_tv_receipt">Add receipt photo</string>
     <string name="frg_new_iv_receipt">Receipt</string>
     <string name="frg_new_btn_save">Save new receipt</string>
+
+    <!-- CV RECEIPT -->
+    <string name="cv_receipt_name">Name</string>
+    <string name="cv_receipt_description">Description</string>
+    <string name="cv_receipt_date">Date</string>
+    <string name="cv_receipt_category">Category</string>
+    <string name="cv_receipt_price">Price</string>
+    <string name="cv_receipt_key">Key</string>
+    <string name="cv_receipt_iv">Image</string>
+    <string name="cv_receipt">Card receipt</string>
+
 </resources>
