@@ -8,6 +8,7 @@ import br.com.seasyc.providingaccount.preferences.Authentication;
 
 public class CMToken {
     public static final String KEY_PREFERENCE = "nncicnbidsbcsnjksfnvkj";
+    public static final String KEY_CODE = "jvbhfsabvhfs";
     public static final String TOKEN = "token";
     public static final String CONTENT = "Content-Type";
     public static final String TYPE = "application/json; charset=UTF-8";

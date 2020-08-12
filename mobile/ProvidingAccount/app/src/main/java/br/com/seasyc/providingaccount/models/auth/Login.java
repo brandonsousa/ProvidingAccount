@@ -3,6 +3,7 @@ package br.com.seasyc.providingaccount.models.auth;
 public class Login {
     private boolean login;
     private String token;
+    private String code;
 
     public Login() {
     }
@@ -21,5 +22,13 @@ public class Login {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

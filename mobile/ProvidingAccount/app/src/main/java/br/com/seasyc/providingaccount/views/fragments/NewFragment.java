@@ -22,6 +22,7 @@ import br.com.seasyc.providingaccount.R;
 import br.com.seasyc.providingaccount.helpers.Formatters;
 import br.com.seasyc.providingaccount.helpers.GenerateKey;
 import br.com.seasyc.providingaccount.models.Receipt;
+import br.com.seasyc.providingaccount.preferences.Authentication;
 import br.com.seasyc.providingaccount.services.FStorage.Upload;
 import br.com.seasyc.providingaccount.util.QuicklyMessage;
 import br.com.seasyc.providingaccount.viewmodels.VMReceipt;
@@ -44,11 +45,15 @@ public class NewFragment extends Fragment implements View.OnClickListener {
     //TODO: instance this
     private VMReceipt vmReceipt;
 
+    private Authentication authentication;
+
     private String key;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_new, container, false);
+
+        authentication = new Authentication(getContext());
 
         initComponents(root);
         configFields();
@@ -94,6 +99,7 @@ public class NewFragment extends Fragment implements View.OnClickListener {
     private void store() {
         if (verifyFilds()) {
             setReceipt();
+            //TODO: add upload with code/filename
             QuicklyMessage.toast(getContext(), receipt.toString());
         }
     }
@@ -133,11 +139,8 @@ public class NewFragment extends Fragment implements View.OnClickListener {
         receipt.setDescription(description.getEditText().getText().toString());
         receipt.setPrice(price.getEditText().getText().toString());
         receipt.setDate(Formatters.unformat(date.getEditText().getText().toString()));
-        //TODO: add user code
-        receipt.setImg_url("https://firebasestorage.googleapis.com/v0/b/providingaccount.appspot.com/o/" + 1 + "%2F2" +
+        receipt.setImg_url("https://firebasestorage.googleapis.com/v0/b/providingaccount.appspot.com/o/" + authentication.getCode() + "%2F2" +
                 key + "." + Upload.getExtension(uri, getContext()) + "?alt=media");
-
-
     }
 
     private void loadImage() {

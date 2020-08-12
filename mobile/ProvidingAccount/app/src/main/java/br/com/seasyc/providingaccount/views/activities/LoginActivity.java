@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
     public void signin(View view) {
         if (verification()) {
             setUser();
-            //TODO: update this return
             vmAuthentication.login(user).observe(this, new Observer<Login>() {
                 @Override
                 public void onChanged(Login login) {
@@ -69,7 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     progressBar.setVisibility(View.GONE);
                     if (login.isLogin()) {
-                        authentication.setToken(login.getToken());
+                        authentication.setToken(login.getToken(), login.getCode());
+                        goToMain();
                     } else {
                         QuicklyMessage.toast(getApplicationContext(), login.getToken());
                     }

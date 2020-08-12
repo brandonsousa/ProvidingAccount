@@ -25,11 +25,22 @@ public class Authentication {
         return null;
     }
 
-    public void setToken(String token) {
+    public void setToken(String token, String code) {
         sharedPreferences = context.getSharedPreferences(CMPreference.FILE_PREFERENCE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putString(CMToken.KEY_PREFERENCE, token);
+        editor.putString(CMToken.KEY_CODE, code);
         editor.commit();
+    }
+
+    public String getCode() {
+        if (hasToken()) {
+            sharedPreferences = context.getSharedPreferences(CMPreference.FILE_PREFERENCE, Context.MODE_PRIVATE);
+            if (sharedPreferences.contains(CMToken.KEY_CODE)) {
+                return sharedPreferences.getString(CMToken.KEY_CODE, null);
+            }
+        }
+        return null;
     }
 
     public boolean hasToken() {
