@@ -21,9 +21,9 @@ public class ReceipterAdapter extends RecyclerView.Adapter<VHReceipter> {
     private List<Receipt> receiptList;
     private Context context;
 
-    public ReceipterAdapter(List<Receipt> receiptList, Context context) {
-        this.receiptList = receiptList;
+    public ReceipterAdapter(Context context, List<Receipt> receiptList) {
         this.context = context;
+        this.receiptList = receiptList;
     }
 
     @NonNull
@@ -50,8 +50,8 @@ public class ReceipterAdapter extends RecyclerView.Adapter<VHReceipter> {
         holder.date.setText(receiptList.get(position).getDate());
         Glide.with(context).load(receiptList.get(position).getImg_url()).into(holder.iv_receipt);
         holder.description.setText(receiptList.get(position).getDescription());
-        holder.category.setText(receiptList.get(position).getDescription());
-        holder.price.setText(receiptList.get(position).getDescription());
+        holder.category.setText(receiptList.get(position).getCategory());
+        holder.price.setText(receiptList.get(position).getPrice());
         holder.key.setText(receiptList.get(position).getKey());
 
     }
