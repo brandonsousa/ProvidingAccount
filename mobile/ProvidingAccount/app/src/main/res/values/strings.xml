@@ -11,4 +11,20 @@
     <string name="title_receipts">Receipts</string>
     <string name="title_new">New</string>
     <string name="title_me">Me</string>
+
+    <!-- FRAGMENT NEW RECEIPT -->
+    <string name="frg_new_edt_name">Name</string>
+    <string name="frg_new_edt_price">Price</string>
+    <string name="frg_new_edt_date">Date</string>
+    <string name="frg_new_edt_description">Description</string>
+    <string name="frg_new_tv_category">Select category</string>
+    <string-array name="frg_new_spn_category">
+        <item>Food</item>
+        <item>Accommodation</item>
+        <item>Transport</item>
+        <item>Others</item>
+    </string-array>
+    <string name="frg_new_tv_receipt">Add receipt photo</string>
+    <string name="frg_new_iv_receipt">Receipt</string>
+    <string name="frg_new_btn_save">Save new receipt</string>
 </resources>

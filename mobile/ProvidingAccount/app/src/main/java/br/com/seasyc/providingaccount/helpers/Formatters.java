@@ -18,9 +18,14 @@ public class Formatters {
         return editText;
     }
 
+    public static String unformat(String s) {
+        String[] without = s.split("/");
+
+        return without[2] + "-" + without[1] + "-" + without[0];
+    }
+
     public static TextWatcher monetary(final EditText ediTxt) {
         return new TextWatcher() {
-            // Mascara monetaria para o preço do produto
             private String current = "";
 
             @Override

@@ -1,5 +1,6 @@
 package br.com.seasyc.providingaccount.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -33,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initDependencies();
-
-        if (authentication.hasToken()) {
+        //TODO: remove this
+        if (!authentication.hasToken()) {
             goToMain();
         }
 
@@ -53,11 +54,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToMain() {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     public void signin(View view) {
         if (verification()) {
             setUser();
+            //TODO: update this return
             vmAuthentication.login(user).observe(this, new Observer<Login>() {
                 @Override
                 public void onChanged(Login login) {

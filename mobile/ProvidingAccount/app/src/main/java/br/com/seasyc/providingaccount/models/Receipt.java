@@ -1,13 +1,11 @@
 package br.com.seasyc.providingaccount.models;
 
-import java.util.Date;
-
 public class Receipt {
 
     private int id;
     private String name;
     private String key;
-    private Date date;
+    private String date;
     private String description;
     private String price;
     private String img_url;
@@ -40,11 +38,11 @@ public class Receipt {
         this.key = key;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -78,5 +76,19 @@ public class Receipt {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Receipt{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", key='" + key + '\'' +
+                ", date='" + date + '\'' +
+                ", description='" + description + '\'' +
+                ", price='" + price + '\'' +
+                ", img_url='" + img_url + '\'' +
+                ", category='" + category + '\'' +
+                '}';
     }
 }
