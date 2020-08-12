@@ -19,22 +19,22 @@ public class VMReceipt {
         repoReceipts = new RepoReceipts();
     }
 
-    public LiveData<Receipt> store(HashMap<String, String> auth, Receipt receipt){
-        if (receiptMutableLiveData == null){
+    public LiveData<Receipt> store(HashMap<String, String> auth, Receipt receipt) {
+        if (receiptMutableLiveData == null) {
             receiptMutableLiveData = repoReceipts.store(auth, receipt);
         }
         return receiptMutableLiveData;
     }
 
-    public LiveData<List<Receipt>> all(HashMap<String, String> auth){
-        if (listMutableLiveData == null){
+    public LiveData<List<Receipt>> all(HashMap<String, String> auth) {
+        if (listMutableLiveData == null) {
             listMutableLiveData = repoReceipts.receipts(auth);
         }
         return listMutableLiveData;
     }
 
-    private LiveData<Receipt> byId(HashMap<String,String> auth, int id){
-        if (receiptMutableLiveData == null){
+    private LiveData<Receipt> byId(HashMap<String, String> auth, int id) {
+        if (receiptMutableLiveData == null) {
             receiptMutableLiveData = repoReceipts.byId(auth, id);
         }
         return receiptMutableLiveData;

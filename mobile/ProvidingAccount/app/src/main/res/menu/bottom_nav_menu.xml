@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_receipts"
+        android:icon="@drawable/ic_baseline_receipt_24"
+        android:title="@string/title_receipts" />
+
+    <item
+        android:id="@+id/navigation_add"
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+        android:title="@string/title_new" />
+
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="@string/title_me" />
+
+</menu>

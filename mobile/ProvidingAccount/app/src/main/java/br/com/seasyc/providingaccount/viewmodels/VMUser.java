@@ -18,8 +18,8 @@ public class VMUser {
         repoUser = new RepoUser();
     }
 
-    public LiveData<User> profile(HashMap<String, String> auth){
-        if (userMutableLiveData == null){
+    public LiveData<User> profile(HashMap<String, String> auth) {
+        if (userMutableLiveData == null) {
             userMutableLiveData = repoUser.profile(auth);
         }
         return userMutableLiveData;

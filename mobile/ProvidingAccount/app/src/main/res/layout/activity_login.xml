@@ -55,10 +55,10 @@
 
     <Button
         android:id="@+id/btn_signin"
-        android:onClick="signin"
         android:layout_width="0dp"
-        android:background="@color/colorAccent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:onClick="signin"
         android:text="@string/login_btn_signin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

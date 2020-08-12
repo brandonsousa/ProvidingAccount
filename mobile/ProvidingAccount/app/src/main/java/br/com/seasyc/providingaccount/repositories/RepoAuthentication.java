@@ -1,7 +1,5 @@
 package br.com.seasyc.providingaccount.repositories;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.HashMap;

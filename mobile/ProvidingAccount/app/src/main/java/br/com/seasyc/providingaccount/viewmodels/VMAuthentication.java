@@ -21,15 +21,15 @@ public class VMAuthentication {
         repoAuthentication = new RepoAuthentication();
     }
 
-    public LiveData<Login> login(User user){
-        if (loginMutableLiveData == null){
+    public LiveData<Login> login(User user) {
+        if (loginMutableLiveData == null) {
             loginMutableLiveData = repoAuthentication.login(user);
         }
         return loginMutableLiveData;
     }
 
-    public LiveData<Logout> logout(HashMap<String, String> auth){
-        if (logoutMutableLiveData == null){
+    public LiveData<Logout> logout(HashMap<String, String> auth) {
+        if (logoutMutableLiveData == null) {
             logoutMutableLiveData = repoAuthentication.logout(auth);
         }
         return logoutMutableLiveData;
