@@ -15,8 +15,8 @@ import br.com.seasyc.providingaccount.util.QuicklyMessage;
 public class Delete {
     private FirebaseStorage storage;
 
-    public static void file(final Context context, String name) {
-        StorageReference fileReference = FStorage.getStorage().child(name);
+    public static void file(final Context context, String user, String name) {
+        StorageReference fileReference = FStorage.getStorage(user);
         fileReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

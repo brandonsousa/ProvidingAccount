@@ -11,11 +11,10 @@
         android:layout_height="match_parent">
         <!-- NAME -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/frg_new__edt_name"
+            android:id="@+id/frg_new_edt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:padding="8dp"
             app:counterEnabled="true"
@@ -23,7 +22,7 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/frg_new_pb">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -34,7 +33,7 @@
 
         <!-- DESCRIPTION -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/frg_new__edt_description"
+            android:id="@+id/frg_new_edt_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -47,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frg_new__edt_name">
+            app:layout_constraintTop_toBottomOf="@+id/frg_new_edt_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -58,7 +57,7 @@
 
         <!-- PRICE -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/frg_new__edt_price"
+            android:id="@+id/frg_new_edt_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -71,7 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frg_new__edt_description">
+            app:layout_constraintTop_toBottomOf="@+id/frg_new_edt_description">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -81,8 +80,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- DATE -->
+
+        <!-- CATEGORY -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/frg_new__edt_date"
+            android:id="@+id/frg_new_edt_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -95,7 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frg_new__edt_price">
+            app:layout_constraintTop_toBottomOf="@+id/frg_new_edt_price">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -104,7 +105,6 @@
                 android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- CATEGORY -->
         <TextView
             android:id="@+id/frg_new_tv_category"
             android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/frg_new_tv_category"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frg_new__edt_date" />
+            app:layout_constraintTop_toBottomOf="@+id/frg_new_edt_date" />
 
         <Spinner
             android:id="@+id/frg_new_spn_category"
@@ -129,7 +129,7 @@
 
         <!-- RECEIPT -->
         <TextView
-            android:id="@+id/frg_new__tv_receipt"
+            android:id="@+id/frg_new_tv_receipt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -151,7 +151,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frg_new__tv_receipt" />
+            app:layout_constraintTop_toBottomOf="@+id/frg_new_tv_receipt" />
 
         <!-- SAVE -->
         <Button
@@ -163,6 +163,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/frg_new_pb"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

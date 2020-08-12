@@ -6,9 +6,9 @@ import com.google.firebase.storage.StorageReference;
 public class FStorage {
     private static StorageReference storageReference;
 
-    public static StorageReference getStorage() {
+    public static StorageReference getStorage(String user) {
         if (storageReference == null) {
-            return storageReference = FirebaseStorage.getInstance().getReference("uploads/");
+            return storageReference = FirebaseStorage.getInstance().getReference(user + "/");
         }
         return storageReference;
     }

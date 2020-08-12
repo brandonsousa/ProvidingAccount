@@ -21,9 +21,9 @@ import br.com.seasyc.providingaccount.util.QuicklyMessage;
 public class Upload {
     private FirebaseStorage storage;
 
-    public static void file(Uri uri, final Context context, String name) {
+    public static void file(Uri uri, final Context context, String user, String name) {
         if (uri != null) {
-            StorageReference fileReference = FStorage.getStorage().child(name
+            StorageReference fileReference = FStorage.getStorage(user).child(name
                     + "." + getExtension(uri, context));
             StorageTask storageTask = fileReference.putFile(uri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

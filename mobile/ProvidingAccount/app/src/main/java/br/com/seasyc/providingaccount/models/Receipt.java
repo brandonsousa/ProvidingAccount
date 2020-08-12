@@ -77,18 +77,5 @@ public class Receipt {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    @Override
-    public String toString() {
-        return "Receipt{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", key='" + key + '\'' +
-                ", date='" + date + '\'' +
-                ", description='" + description + '\'' +
-                ", price='" + price + '\'' +
-                ", img_url='" + img_url + '\'' +
-                ", category='" + category + '\'' +
-                '}';
-    }
+    
 }

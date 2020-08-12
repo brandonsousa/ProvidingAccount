@@ -9,16 +9,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
 
 import br.com.seasyc.providingaccount.R;
+import br.com.seasyc.providingaccount.common.CMToken;
 import br.com.seasyc.providingaccount.helpers.Formatters;
 import br.com.seasyc.providingaccount.helpers.GenerateKey;
 import br.com.seasyc.providingaccount.models.Receipt;
@@ -29,7 +32,6 @@ import br.com.seasyc.providingaccount.viewmodels.VMReceipt;
 
 import static android.app.Activity.RESULT_OK;
 
-//TODO: store on api
 public class NewFragment extends Fragment implements View.OnClickListener {
 
     private static final int PICK_IMG_REQUEST = 1;
@@ -38,11 +40,12 @@ public class NewFragment extends Fragment implements View.OnClickListener {
     private Spinner spn_category;
     private ImageView iv_receipt;
     private Button save;
+    private ProgressBar progressBar;
 
     private Uri uri;
 
     private Receipt receipt;
-    //TODO: instance this
+
     private VMReceipt vmReceipt;
 
     private Authentication authentication;
@@ -63,14 +66,16 @@ public class NewFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initComponents(View view) {
+        vmReceipt = new VMReceipt();
         key = GenerateKey.generate();
-        name = view.findViewById(R.id.frg_new__edt_name);
-        price = view.findViewById(R.id.frg_new__edt_price);
-        date = view.findViewById(R.id.frg_new__edt_date);
-        description = view.findViewById(R.id.frg_new__edt_description);
+        name = view.findViewById(R.id.frg_new_edt_name);
+        price = view.findViewById(R.id.frg_new_edt_price);
+        date = view.findViewById(R.id.frg_new_edt_date);
+        description = view.findViewById(R.id.frg_new_edt_description);
         spn_category = view.findViewById(R.id.frg_new_spn_category);
         iv_receipt = view.findViewById(R.id.frg_new_iv_receipt);
         save = view.findViewById(R.id.frg_new_btn_save);
+        progressBar = view.findViewById(R.id.frg_new_pb);
     }
 
     private void configFields() {
@@ -99,8 +104,22 @@ public class NewFragment extends Fragment implements View.OnClickListener {
     private void store() {
         if (verifyFilds()) {
             setReceipt();
-            //TODO: add upload with code/filename
-            QuicklyMessage.toast(getContext(), receipt.toString());
+            vmReceipt.store(new CMToken().header(getContext()), receipt).observe(getViewLifecycleOwner(),
+                    new Observer<Receipt>() {
+                        @Override
+                        public void onChanged(Receipt receipt) {
+                            while (receipt == null) {
+                                progressBar.setVisibility(View.VISIBLE);
+                            }
+                            progressBar.setVisibility(View.GONE);
+                            if (receipt.getKey() != null) {
+                                Upload.file(uri, getContext(), authentication.getCode(), key);
+                            } else {
+                                QuicklyMessage.toast(getContext(),
+                                        "Receipt don't created, try again or contact admin");
+                            }
+                        }
+                    });
         }
     }
 
@@ -139,8 +158,8 @@ public class NewFragment extends Fragment implements View.OnClickListener {
         receipt.setDescription(description.getEditText().getText().toString());
         receipt.setPrice(price.getEditText().getText().toString());
         receipt.setDate(Formatters.unformat(date.getEditText().getText().toString()));
-        receipt.setImg_url("https://firebasestorage.googleapis.com/v0/b/providingaccount.appspot.com/o/" + authentication.getCode() + "%2F2" +
-                key + "." + Upload.getExtension(uri, getContext()) + "?alt=media");
+        receipt.setImg_url("https://firebasestorage.googleapis.com/v0/b/providingaccount.appspot.com/o/" +
+                authentication.getCode() + "%2F2" + key + "." + Upload.getExtension(uri, getContext()) + "?alt=media");
     }
 
     private void loadImage() {
