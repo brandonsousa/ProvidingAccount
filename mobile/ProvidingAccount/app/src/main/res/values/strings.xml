@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ProvidingAccount</string>
+
+    <!-- LOGIN ACTIVITY -->
+    <string name="login_edt_code">Your code</string>
+    <string name="login_edt_password">Your password</string>
+    <string name="login_btn_signin">SignIn</string>
 </resources>

@@ -10,14 +10,14 @@ import br.com.seasyc.providingaccount.models.auth.Login;
 import br.com.seasyc.providingaccount.models.auth.Logout;
 import br.com.seasyc.providingaccount.repositories.RepoAuthentication;
 
-public class VMAuthetication {
+public class VMAuthentication {
 
     private RepoAuthentication repoAuthentication;
 
     private MutableLiveData<Login> loginMutableLiveData;
     private MutableLiveData<Logout> logoutMutableLiveData;
 
-    public VMAuthetication() {
+    public VMAuthentication() {
         repoAuthentication = new RepoAuthentication();
     }
 

@@ -1,5 +1,7 @@
 package br.com.seasyc.providingaccount.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.HashMap;
@@ -25,7 +27,6 @@ public class RepoAuthentication {
 
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
-
             }
         });
         return login;
