@@ -17,7 +17,7 @@ class ReceiptController {
    * @param {View} ctx.view
    */
   async index({ response, auth }) {
-    const receipts = await Receipt.findBy('user_id', auth.user.id)
+    const receipts = await Receipt.query().where('user_id', auth.user.id).fetch()
     if (receipts) {
       return response.status(200).send(receipts)
     }
