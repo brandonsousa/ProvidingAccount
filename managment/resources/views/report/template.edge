@@ -20,8 +20,10 @@
 </style>
 <style type="text/css" media="print">
     #print { display: none }
+    #back { display: none}
 </style>
 <body>
+    <a href="/report" id="back" name="back">Back</a>
     <input type="button" id="print" name="print" value="print" onclick="window.print();">
     <div class="container">
         @each(item in receipts)
