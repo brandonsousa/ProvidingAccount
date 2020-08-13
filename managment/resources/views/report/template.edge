@@ -24,13 +24,7 @@
 <body>
     <input type="button" id="print" name="print" value="print" onclick="window.print();">
     <div class="container">
-        @each(item in user.receipts)
-        <div class="receipts">
-            <img id="receipt" src="{{item.img_url}}" alt="{{item.name}}" srcset="">
-        </div>
-        <div class="receipts">
-            <img id="receipt" src="{{item.img_url}}" alt="{{item.name}}" srcset="">
-        </div>
+        @each(item in receipts)
         <div class="receipts">
             <img id="receipt" src="{{item.img_url}}" alt="{{item.name}}" srcset="">
         </div>
