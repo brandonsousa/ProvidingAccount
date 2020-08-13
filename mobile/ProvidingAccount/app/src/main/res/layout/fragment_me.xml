@@ -37,8 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
-            android:inputType="textWebEmailAddress"
-            android:hint="@string/frg_me_email" />
+            android:hint="@string/frg_me_email"
+            android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

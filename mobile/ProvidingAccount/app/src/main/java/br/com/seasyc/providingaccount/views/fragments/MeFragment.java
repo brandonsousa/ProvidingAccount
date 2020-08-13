@@ -19,6 +19,7 @@ import br.com.seasyc.providingaccount.common.CMToken;
 import br.com.seasyc.providingaccount.models.User;
 import br.com.seasyc.providingaccount.models.auth.Logout;
 import br.com.seasyc.providingaccount.preferences.Authentication;
+import br.com.seasyc.providingaccount.util.QuicklyMessage;
 import br.com.seasyc.providingaccount.viewmodels.VMAuthentication;
 import br.com.seasyc.providingaccount.viewmodels.VMUser;
 import br.com.seasyc.providingaccount.views.activities.LoginActivity;
@@ -51,8 +52,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 while (user == null) {
                     progressBar.setVisibility(View.VISIBLE);
                 }
-                progressBar.setVisibility(View.VISIBLE);
-                name.getEditText().setText(user.getName());
+                progressBar.setVisibility(View.GONE);
+                name.setEnabled(false);
+                email.setEnabled(false);
+                code.setEnabled(false);
+                name.getEditText().setText(user.getUsername());
                 email.getEditText().setText(user.getEmail());
                 code.getEditText().setText(user.getCode());
             }
@@ -85,14 +89,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         vmAuthentication.logout(new CMToken().header(getContext())).observe(getViewLifecycleOwner(), new Observer<Logout>() {
             @Override
             public void onChanged(Logout logout) {
-                while (logout == null) {
-                    progressBar.setVisibility(View.VISIBLE);
-                }
-                progressBar.setVisibility(View.VISIBLE);
-                if (logout.isLogout()) {
-                    if (new Authentication(getContext()).logout()) {
-                        startActivity(new Intent(getContext(), LoginActivity.class));
-                    }
+                if (new Authentication(getContext()).logout()) {
+                    QuicklyMessage.toast(getContext(), "logout");
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
             }
         });

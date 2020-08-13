@@ -77,5 +77,5 @@ public class Receipt {
     public void setCategory(String category) {
         this.category = category;
     }
-    
+
 }

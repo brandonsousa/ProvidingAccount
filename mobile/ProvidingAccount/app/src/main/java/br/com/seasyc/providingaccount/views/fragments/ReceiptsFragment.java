@@ -56,7 +56,7 @@ public class ReceiptsFragment extends Fragment {
         vmReceipt.all(new CMToken().header(getContext())).observe(getViewLifecycleOwner(), new Observer<List<Receipt>>() {
             @Override
             public void onChanged(List<Receipt> receipts) {
-                while (receipts == null){
+                while (receipts == null) {
                     progressBar.setVisibility(View.VISIBLE);
                 }
                 progressBar.setVisibility(View.GONE);
