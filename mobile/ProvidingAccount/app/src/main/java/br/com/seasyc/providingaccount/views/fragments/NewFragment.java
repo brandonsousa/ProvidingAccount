@@ -114,6 +114,8 @@ public class NewFragment extends Fragment implements View.OnClickListener {
                             progressBar.setVisibility(View.GONE);
                             if (receipt.getKey() != null) {
                                 Upload.file(uri, getContext(), authentication.getCode(), key);
+                                QuicklyMessage.toast(getContext(),
+                                        "New receipt created");
                             } else {
                                 QuicklyMessage.toast(getContext(),
                                         "Receipt don't created, try again or contact admin");
@@ -159,7 +161,7 @@ public class NewFragment extends Fragment implements View.OnClickListener {
         receipt.setPrice(price.getEditText().getText().toString());
         receipt.setDate(Formatters.unformat(date.getEditText().getText().toString()));
         receipt.setImg_url("https://firebasestorage.googleapis.com/v0/b/providingaccount.appspot.com/o/" +
-                authentication.getCode() + "%2F2" + key + "." + Upload.getExtension(uri, getContext()) + "?alt=media");
+                authentication.getCode() + "%2F" + key + "." + Upload.getExtension(uri, getContext()) + "?alt=media");
     }
 
     private void loadImage() {

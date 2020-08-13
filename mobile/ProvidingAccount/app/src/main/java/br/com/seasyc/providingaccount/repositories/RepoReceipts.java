@@ -41,7 +41,6 @@ public class RepoReceipts {
 
             @Override
             public void onFailure(Call<Receipt> call, Throwable t) {
-
             }
         });
         return store;

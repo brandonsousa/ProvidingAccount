@@ -1,5 +1,5 @@
 package br.com.seasyc.providingaccount.common;
 
 public class Api {
-    public static final String BASE_URL = "http://10.0.0.221:3333/";
+    public static final String BASE_URL = "http://192.168.1.7:3333/";
 }

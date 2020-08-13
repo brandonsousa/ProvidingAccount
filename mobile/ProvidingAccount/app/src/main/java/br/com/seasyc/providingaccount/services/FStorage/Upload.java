@@ -29,20 +29,22 @@ public class Upload {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            QuicklyMessage.toast(context, "Upload done");
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            QuicklyMessage.toast(context, "Erro ao tentar realizar o upload da foto, volte e tente novamente");
+                            QuicklyMessage.toast(context, "Error on upload: " + e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                            QuicklyMessage.toast(context, String.format("%.2f", progress) + "%");
                         }
                     });
         } else {
-            QuicklyMessage.toast(context, "Selecione uma foto");
+            QuicklyMessage.toast(context, "Select Image");
         }
     }
 
