@@ -28,6 +28,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="/login" method="post">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
         <div class="input-group mb-3">
           <input type="number" class="form-control" name="code" placeholder="Code" required>
           <div class="input-group-append">

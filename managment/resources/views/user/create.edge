@@ -24,6 +24,7 @@
     @endif
   </div>
   <form role="form" id="quickForm" action="/user" method="POST">
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
     <div class="card-body">
       <div class="form-group">
         <label for="usernameInput">Username</label>
