@@ -12,7 +12,7 @@ class ReceiptsSchema extends Schema {
       table.date('date').notNullable()
       table.string('key', 10).notNullable().unique()
       table.string('description', 100)
-      table.string('price', 10).notNullable()
+      table.float('price').notNullable()
       table.string('img_url', 255).notNullable()
       table.string('category', 20).notNullable()
       table.timestamps()
