@@ -16,10 +16,10 @@ class ReportController {
 
         if (user) {
             await user.load('receipts')
-            const food = await Database.raw('SELECT SUM(price) AS total FROM receipts WHERE category = "Food" AND user_id = ?', user.id)
-            const accommodation = await Database.raw('SELECT SUM(price) AS total FROM receipts WHERE category = "Accommodation" AND user_id = ?', user.id)
-            const transport = await Database.raw('SELECT SUM(price) AS total FROM receipts WHERE category = "Transport" AND user_id = ?', user.id)
-            const others = await Database.raw('SELECT SUM(price) AS total FROM receipts WHERE category = "Others"  AND user_id = ?', user.id)
+            const food = await Database.raw('SELECT ROUND(SUM(price),2) AS total FROM receipts WHERE category = "Food" AND user_id = ?', user.id)
+            const accommodation = await Database.raw('SELECT ROUND(SUM(price),2) AS total FROM receipts WHERE category = "Accommodation" AND user_id = ?', user.id)
+            const transport = await Database.raw('SELECT ROUND(SUM(price),2) AS total FROM receipts WHERE category = "Transport" AND user_id = ?', user.id)
+            const others = await Database.raw('SELECT ROUND(SUM(price),2) AS total FROM receipts WHERE category = "Others"  AND user_id = ?', user.id)
             return view.render('report.template', {
                 user: user.toJSON(),
                 food: food[0],
