@@ -7,7 +7,7 @@ class UserSchema extends Schema {
   up () {
     this.create('users', (table) => {
       table.increments()
-      table.string('username', 80).notNullable().unique()
+      table.string('username', 80).notNullable()
       table.integer('user_id').unsigned(null).references('id').inTable('users')
       table.string('code', 10).notNullable().unique()
       table.boolean('admin').defaultTo(false)
