@@ -3,39 +3,51 @@
 <h1 class="m-0 text-dark">Receipts</h1>
 @endsection
 @section('child')
-<li class="breadcrumb-item"><a href="/receipts">all</a></li>
+<li class="breadcrumb-item"><a href="/receipts">by User</a></li>
 @endsection
 @section('sroot')
 <li class="breadcrumb-item active">Receipts</li>
 @endsection
 @section('content')
-    @each(user in all)
-        <div class="card card-primary">
-            <div class="card-header">
-                <div class="card-title">
-                    {{user.username}} {{user.receipts.length}}
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    @each(item in user.receipts)
-                        <div class="col-sm-2">
-                            <a href="{{item.img_url}}" data-toggle="lightbox" data-title="{{item.name}}, {{item.price}}, {{item.category}}" 
-                            data-gallery="gallery">
-                                <img src="{{item.img_url}}" class="img-fluid mb-2" alt="white sample"/>
-                            </a>
-                        </div>
-                    @endeach
-                </div>
-            </div>
+<form class="searchform">
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    <input type="text" class="search" name="search" id="search">
+</form>
+<div class="card card-primary mt-3">
+    <div class="card-header">
+        <div class="card-title">
+            <p class="user"></p>
         </div>
-    @else
-        <div class="card card-primary">
-            <div class="card-header">
-                <div class="card-title">
-                    Nothing to show
-                </div>
-            </div>
+    </div>
+    <div class="card-body">
+        <div class="row receipts">
+
         </div>
-    @endeach
+    </div>
+</div>
+<script>
+    document.querySelector('.search')
+        .addEventListener('keyup', e => {
+            document.querySelector('.user').innerHTML = ' '
+            document.querySelector('.receipts').innerHTML = ' '
+            fetch('/ureceipts',
+                { method: "POST", body: new FormData(document.querySelector('.searchform')) })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.data) {
+                        response.data.forEach(element => {
+                            document.querySelector('.receipts').innerHTML += '<div class="col-sm-2">' +
+                                '<a href="' + element.img_url + '"data-toggle="lightbox" data-title="'+ element.name + ", " + element.price + ", " + element.category +'"'+
+                                'data-gallery="gallery">' +
+                                '<img src ="' + element.img_url + '" class="mb-2" height="120" alt="white sample" /></a>'+
+                                '</div>'
+
+                        });
+                        document.querySelector('.user')
+                            .innerHTML = response.data[0].username + "<br>" +
+                            response.data[0].code + "<br> Comprovantes: " + response.data.length
+                    }
+                })
+        });
+</script>
 @endsection

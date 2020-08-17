@@ -18,10 +18,7 @@ class ReceiptController {
    * @param {View} ctx.view
    */
   async index({ view }) {
-
-    return view.render('receipt.index', {
-      all: null
-    })
+    return view.render('receipt.index')
   }
 
   /**
