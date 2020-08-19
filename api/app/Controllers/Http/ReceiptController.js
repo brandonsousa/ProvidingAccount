@@ -71,8 +71,19 @@ class ReceiptController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response, auth }) {
-
+  async destroy({ response, auth }) {
+    try {
+      await Receipt.query().where('user_id', auth.user.id).delete()
+      return response.status(200).send({
+        deleted: true,
+        data: 'Receipts deleted'
+      })
+    } catch (error) {
+      return response.status(200).send({
+        deleted: false,
+        data: error.message
+      })
+    }
   }
 }
 
