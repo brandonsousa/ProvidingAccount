@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import br.com.seasyc.providingaccount.models.Receipt;
+import br.com.seasyc.providingaccount.models.responses.Deleted;
 import br.com.seasyc.providingaccount.repositories.RepoReceipts;
 
 public class VMReceipt {
@@ -14,6 +15,7 @@ public class VMReceipt {
 
     private MutableLiveData<Receipt> receiptMutableLiveData;
     private MutableLiveData<List<Receipt>> listMutableLiveData;
+    private MutableLiveData<Deleted> deletedMutableLiveData;
 
     public VMReceipt() {
         repoReceipts = new RepoReceipts();
@@ -38,6 +40,13 @@ public class VMReceipt {
             receiptMutableLiveData = repoReceipts.byId(auth, id);
         }
         return receiptMutableLiveData;
+    }
+
+    public LiveData<Deleted> deleteAll(HashMap<String, String> auth) {
+        if (deletedMutableLiveData == null) {
+            deletedMutableLiveData = repoReceipts.deleteAll(auth);
+        }
+        return deletedMutableLiveData;
     }
 
 }

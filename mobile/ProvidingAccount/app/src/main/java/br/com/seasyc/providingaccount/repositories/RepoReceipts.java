@@ -1,5 +1,7 @@
 package br.com.seasyc.providingaccount.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.HashMap;
@@ -7,6 +9,7 @@ import java.util.List;
 
 import br.com.seasyc.providingaccount.configs.RetrofitConfig;
 import br.com.seasyc.providingaccount.models.Receipt;
+import br.com.seasyc.providingaccount.models.responses.Deleted;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,6 +64,23 @@ public class RepoReceipts {
             }
         });
         return byId;
+    }
+
+    public MutableLiveData<Deleted> deleteAll(HashMap<String, String> auth){
+        final MutableLiveData<Deleted> delete = new MutableLiveData<>();
+        Call<Deleted> deletedCall = new  RetrofitConfig().receipt().deleteAll(auth);
+        deletedCall.enqueue(new Callback<Deleted>() {
+            @Override
+            public void onResponse(Call<Deleted> call, Response<Deleted> response) {
+                delete.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Deleted> call, Throwable t) {
+                Log.e("delete", t.getMessage());
+            }
+        });
+        return delete;
     }
 
 

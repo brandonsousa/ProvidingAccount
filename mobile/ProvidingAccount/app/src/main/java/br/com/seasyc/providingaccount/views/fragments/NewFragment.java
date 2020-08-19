@@ -46,8 +46,6 @@ public class NewFragment extends Fragment implements View.OnClickListener {
 
     private Receipt receipt;
 
-    private VMReceipt vmReceipt;
-
     private Authentication authentication;
 
     private String key;
@@ -66,7 +64,6 @@ public class NewFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initComponents(View view) {
-        vmReceipt = new VMReceipt();
         key = GenerateKey.generate();
         name = view.findViewById(R.id.frg_new_edt_name);
         price = view.findViewById(R.id.frg_new_edt_price);
@@ -104,7 +101,7 @@ public class NewFragment extends Fragment implements View.OnClickListener {
     private void store() {
         if (verifyFilds()) {
             setReceipt();
-            vmReceipt.store(new CMToken().header(getContext()), receipt).observe(getViewLifecycleOwner(),
+            new VMReceipt().store(new CMToken().header(getContext()), receipt).observe(getViewLifecycleOwner(),
                     new Observer<Receipt>() {
                         @Override
                         public void onChanged(Receipt receipt) {
@@ -116,6 +113,9 @@ public class NewFragment extends Fragment implements View.OnClickListener {
                                 Upload.file(uri, getContext(), authentication.getCode(), key);
                                 QuicklyMessage.toast(getContext(),
                                         "New receipt created");
+                                Intent intent = getActivity().getIntent();
+                                getActivity().finish();
+                                startActivity(intent);
                             } else {
                                 QuicklyMessage.toast(getContext(),
                                         "Receipt don't created, try again or contact admin");
@@ -158,7 +158,7 @@ public class NewFragment extends Fragment implements View.OnClickListener {
         receipt.setKey(key);
         receipt.setName(name.getEditText().getText().toString());
         receipt.setDescription(description.getEditText().getText().toString());
-        receipt.setPrice(price.getEditText().getText().toString());
+        receipt.setPrice(price.getEditText().getText().toString().replaceAll(",", "."));
         receipt.setDate(Formatters.unformat(date.getEditText().getText().toString()));
         receipt.setImg_url("https://firebasestorage.googleapis.com/v0/b/providingaccount.appspot.com/o/" +
                 authentication.getCode() + "%2F" + key + "." + Upload.getExtension(uri, getContext()) + "?alt=media");

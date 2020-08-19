@@ -19,7 +19,6 @@ import br.com.seasyc.providingaccount.configs.FStorage;
 import br.com.seasyc.providingaccount.util.QuicklyMessage;
 
 public class Upload {
-    private FirebaseStorage storage;
 
     public static void file(Uri uri, final Context context, String user, String name) {
         if (uri != null) {
@@ -40,7 +39,7 @@ public class Upload {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                            QuicklyMessage.toast(context, String.format("%.2f", progress) + "%");
+                            QuicklyMessage.toast(context, progress + "%");
                         }
                     });
         } else {

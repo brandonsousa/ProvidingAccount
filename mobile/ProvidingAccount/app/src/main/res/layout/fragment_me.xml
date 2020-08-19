@@ -59,16 +59,6 @@
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/frg_me_logout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/frg_me_logout"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ProgressBar
         android:id="@+id/frg_me_pb"
         style="?android:attr/progressBarStyle"

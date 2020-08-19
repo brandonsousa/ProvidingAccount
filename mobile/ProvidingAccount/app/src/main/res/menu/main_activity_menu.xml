@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main_activity_menu_pey_off"
+        android:title="@string/main_activity_menu_pey_off"/>
+    <item
+        android:id="@+id/main_activity_menu_logout"
+        android:title="@string/frg_me_logout"/>
+
+</menu>

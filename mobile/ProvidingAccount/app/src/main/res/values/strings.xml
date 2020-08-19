@@ -43,5 +43,6 @@
     <string name="frg_me_email">Email</string>
     <string name="frg_me_code">Code</string>
     <string name="frg_me_logout">Log Out</string>
+    <string name="main_activity_menu_pey_off">Pay off</string>
 
 </resources>
